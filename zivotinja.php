@@ -160,7 +160,7 @@ $korisnik = Korisnik::getKorisnikUsername($_SESSION['current_user'],$konekcija)[
                 <input class="form-control" type="button" id="sortBtn" value="sortiraj">
             </div>
             <div>
-                <input class="form-control" type="button" id="sortRBtn" value="sortiraj po rodjenju">
+                <input class="form-control" type="button" id="sortRBtn" value="sortiraj po rođenju">
             </div>
         </div>
 
