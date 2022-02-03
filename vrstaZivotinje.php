@@ -90,9 +90,11 @@ $korisnik = Korisnik::getKorisnikUsername($_SESSION['current_user'],$konekcija)[
     </div>
 
     <div class="prikazPodataka">
-        <div class="d-flex p-1 justify-content-between">
-            <h3>Vrste</h3>
-            <div class="w-70 p-3">
+        <div class="d-flex p-1 justify-content-center align-items-center">
+            <div>
+                <h3>Vrste</h3>
+            </div>
+            <div class="w-50 p-3">
                 <input class="form-control" type="text" placeholder="pretraga" id="pretraga">
             </div>
             <div>
@@ -106,7 +108,7 @@ $korisnik = Korisnik::getKorisnikUsername($_SESSION['current_user'],$konekcija)[
            while (($vrsta=$vrste->fetch_assoc())!=null){?>
 
            <div class="col">
-               <div class="card" style="background-color: rgba(42, 57, 89, 0.72);">
+               <div class="card" style="background-color: rgba(42,57,89,0.87);">
                    <div class="card-body">
                        <h5 class="card-title"><?=$vrsta['naziv']?></h5>
                        <p class="card-text"><?=$vrsta['vrsta']?></p>
