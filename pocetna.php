@@ -1,12 +1,15 @@
 <?php
-
-
 session_start();
 
 if (!isset($_SESSION['current_user'])) {
     header('Location: index.php');
     exit();
 }
+
+require "Database.php";
+require "model/Korisnik.php";
+require "model/VrstaZivotinje.php";
+require "model/Zivotinja.php";
 
 ?>
 
@@ -53,6 +56,52 @@ if (!isset($_SESSION['current_user'])) {
     </div>
 </div>
 
+<div class="pocetnaStranaSadrzaj">
+
+    <div class="d-flex p-1 justify-content-center align-items-center">
+        <div>
+            <h3>Sve životinje</h3>
+        </div>
+        <div class="w-50 p-3">
+            <input class="form-control" type="text" placeholder="pretraga" id="pretraga">
+        </div>
+        <div>
+            <input class="form-control" type="button" id="sortBtn" value="sortiraj">
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 g-3">
+        <?php
+        $zivotinje=Zivotinja::getAll($konekcija);
+        while (($zivotinja=$zivotinje->fetch_assoc())!=null){?>
+
+            <form method="post" action="zivotinja.php" class="col">
+                <div class="card" style="background-color: rgba(42,57,89,0.87);">
+                    <div class="card-body">
+                        <input type="hidden" name="id_zivotinje" value="<?=$zivotinja['id']?>" >
+                        <h5 class="card-title"><?=$zivotinja['ime']?></h5>
+                        <?php $vrstaK=VrstaZivotinje::getVrstaZivotinje($zivotinja['vrsta_id'],$konekcija)[0]?>
+                        <p class="card-text">Vrsta: <?=$vrstaK['naziv']." ".$vrstaK['vrsta']?></p>
+                        <?php $otacK=Zivotinja::getZivotinja($zivotinja['otac_id'],$konekcija)?>
+
+                        <p class="card-text">Otac: <?=!empty($otacK)?$otacK[0]['ime']:"Nema"?></p>
+                        <?php $majkaK=Zivotinja::getZivotinja($zivotinja['majka_id'],$konekcija)?>
+                        <p class="card-text">Majka: <?=!empty($majkaK)?$majkaK[0]['ime']:"Nema"?></p>
+                        <p class="card-text">Datum rođenja: <?=$zivotinja['datumRodjenja']?></p>
+                        <p class="card-text">Status: <?=$zivotinja['status']?></p>
+                        <p class="card-text">Napomena: <?=$zivotinja['napomena']?></p>
+                        <?php $korisnikK=Korisnik::getKorisnik($zivotinja['korisnik_id'],$konekcija)[0]?>
+                        <p class="card-text">Korisnik dodao: <?=$korisnikK['username']?></p>
+                        <button type="submit" class="btn btn-primary">Pogledaj</button>
+                    </div>
+                </div>
+            </form>
+
+        <?php }
+        ?>
+    </div>
+
+</div>
 
 
 

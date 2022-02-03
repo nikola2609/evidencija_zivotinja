@@ -40,9 +40,8 @@ $('#formaZivotinja').submit(function (){
 
 });
 
-$('input[name="zivotinjaCheck"]').click(function (){
-
-    let id=$('input[name="zivotinjaCheck"]:checked').val();
+function popuniFormu(idZ){
+    let id=idZ;
 
     req=$.ajax({
         url: 'requestHandler/zivotinja/get.php',
@@ -75,7 +74,10 @@ $('input[name="zivotinjaCheck"]').click(function (){
     req.fail(function(jqXHR, textStatus, errorThrown){
         console.error('Greska '+textStatus, errorThrown)
     });
+}
 
+$('input[name="zivotinjaCheck"]').click(function (){
+    popuniFormu($('input[name="zivotinjaCheck"]:checked').val());
 });
 
 $('#resetZivotinja').click(function (){

@@ -12,8 +12,6 @@ require "model/VrstaZivotinje.php";
 require "model/Zivotinja.php";
 
 $korisnik = Korisnik::getKorisnikUsername($_SESSION['current_user'],$konekcija)[0];
-
-
 ?>
 
 
@@ -149,6 +147,7 @@ $korisnik = Korisnik::getKorisnikUsername($_SESSION['current_user'],$konekcija)[
         </form>
     </div>
 
+
     <div class="prikazPodataka">
         <div class="d-flex p-1 justify-content-center align-items-center">
             <div>
@@ -193,8 +192,8 @@ $korisnik = Korisnik::getKorisnikUsername($_SESSION['current_user'],$konekcija)[
         </div>
 
 
-
     </div>
+
 </div>
 
 
@@ -205,6 +204,15 @@ $korisnik = Korisnik::getKorisnikUsername($_SESSION['current_user'],$konekcija)[
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="js/zivotinja.js"></script>
+<?php
+if(isset($_POST['id_zivotinje'])){
+    echo '<script type="text/javascript">
+            popuniFormu('.$_POST["id_zivotinje"].');
+        </script>'
+    ;
+
+}
+?>
 </body>
 </html>
 
