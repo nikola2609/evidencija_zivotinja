@@ -159,6 +159,9 @@ $korisnik = Korisnik::getKorisnikUsername($_SESSION['current_user'],$konekcija)[
             <div>
                 <input class="form-control" type="button" id="sortBtn" value="sortiraj">
             </div>
+            <div>
+                <input class="form-control" type="button" id="sortRBtn" value="sortiraj po rodjenju">
+            </div>
         </div>
 
         <div class="row row-cols-1 row-cols-sm-2 g-3">
@@ -177,7 +180,7 @@ $korisnik = Korisnik::getKorisnikUsername($_SESSION['current_user'],$konekcija)[
                             <p class="card-text">Otac: <?=!empty($otacK)?$otacK[0]['ime']:"Nema"?></p>
                             <?php $majkaK=Zivotinja::getZivotinja($zivotinja['majka_id'],$konekcija)?>
                             <p class="card-text">Majka: <?=!empty($majkaK)?$majkaK[0]['ime']:"Nema"?></p>
-                            <p class="card-text">Datum rođenja: <?=$zivotinja['datumRodjenja']?></p>
+                            <p class="card-text karticaRodjendan">Datum rođenja: <?=$zivotinja['datumRodjenja']?></p>
                             <p class="card-text">Status: <?=$zivotinja['status']?></p>
                             <p class="card-text">Napomena: <?=$zivotinja['napomena']?></p>
                             <?php $korisnikK=Korisnik::getKorisnik($zivotinja['korisnik_id'],$konekcija)[0]?>
@@ -204,6 +207,7 @@ $korisnik = Korisnik::getKorisnikUsername($_SESSION['current_user'],$konekcija)[
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="js/zivotinja.js"></script>
+<script src="js/sortiranjeIpretraga.js"></script>
 <?php
 if(isset($_POST['id_zivotinje'])){
     echo '<script type="text/javascript">

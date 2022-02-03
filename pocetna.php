@@ -75,27 +75,29 @@ require "model/Zivotinja.php";
         $zivotinje=Zivotinja::getAll($konekcija);
         while (($zivotinja=$zivotinje->fetch_assoc())!=null){?>
 
-            <form method="post" action="zivotinja.php" class="col">
-                <div class="card" style="background-color: rgba(42,57,89,0.87);">
-                    <div class="card-body">
-                        <input type="hidden" name="id_zivotinje" value="<?=$zivotinja['id']?>" >
-                        <h5 class="card-title"><?=$zivotinja['ime']?></h5>
-                        <?php $vrstaK=VrstaZivotinje::getVrstaZivotinje($zivotinja['vrsta_id'],$konekcija)[0]?>
-                        <p class="card-text">Vrsta: <?=$vrstaK['naziv']." ".$vrstaK['vrsta']?></p>
-                        <?php $otacK=Zivotinja::getZivotinja($zivotinja['otac_id'],$konekcija)?>
 
-                        <p class="card-text">Otac: <?=!empty($otacK)?$otacK[0]['ime']:"Nema"?></p>
-                        <?php $majkaK=Zivotinja::getZivotinja($zivotinja['majka_id'],$konekcija)?>
-                        <p class="card-text">Majka: <?=!empty($majkaK)?$majkaK[0]['ime']:"Nema"?></p>
-                        <p class="card-text">Datum rođenja: <?=$zivotinja['datumRodjenja']?></p>
-                        <p class="card-text">Status: <?=$zivotinja['status']?></p>
-                        <p class="card-text">Napomena: <?=$zivotinja['napomena']?></p>
-                        <?php $korisnikK=Korisnik::getKorisnik($zivotinja['korisnik_id'],$konekcija)[0]?>
-                        <p class="card-text">Korisnik dodao: <?=$korisnikK['username']?></p>
-                        <button type="submit" class="btn btn-primary">Pogledaj</button>
+                <form method="post" action="zivotinja.php" class="col">
+                    <div class="card" style="background-color: rgba(42,57,89,0.87);">
+                        <div class="card-body">
+                            <input type="hidden" name="id_zivotinje" value="<?=$zivotinja['id']?>" >
+                            <h5 class="card-title"><?=$zivotinja['ime']?></h5>
+                            <?php $vrstaK=VrstaZivotinje::getVrstaZivotinje($zivotinja['vrsta_id'],$konekcija)[0]?>
+                            <p class="card-text">Vrsta: <?=$vrstaK['naziv']." ".$vrstaK['vrsta']?></p>
+                            <?php $otacK=Zivotinja::getZivotinja($zivotinja['otac_id'],$konekcija)?>
+
+                            <p class="card-text">Otac: <?=!empty($otacK)?$otacK[0]['ime']:"Nema"?></p>
+                            <?php $majkaK=Zivotinja::getZivotinja($zivotinja['majka_id'],$konekcija)?>
+                            <p class="card-text">Majka: <?=!empty($majkaK)?$majkaK[0]['ime']:"Nema"?></p>
+                            <p class="card-text">Datum rođenja: <?=$zivotinja['datumRodjenja']?></p>
+                            <p class="card-text">Status: <?=$zivotinja['status']?></p>
+                            <p class="card-text">Napomena: <?=$zivotinja['napomena']?></p>
+                            <?php $korisnikK=Korisnik::getKorisnik($zivotinja['korisnik_id'],$konekcija)[0]?>
+                            <p class="card-text">Korisnik dodao: <?=$korisnikK['username']?></p>
+                            <button type="submit" class="btn btn-primary">Pogledaj</button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+
 
         <?php }
         ?>
@@ -107,6 +109,7 @@ require "model/Zivotinja.php";
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="js/sortiranjeIpretraga.js"></script>
 </body>
 </html>
 
