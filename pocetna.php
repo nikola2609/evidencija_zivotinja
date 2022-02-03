@@ -70,14 +70,14 @@ require "model/Zivotinja.php";
         </div>
     </div>
 
-    <div class="row row-cols-1 row-cols-sm-2 g-3">
+    <div class="row row-cols-1 row-cols-sm-2 g-3 justify-content-center">
         <?php
         $zivotinje=Zivotinja::getAll($konekcija);
         while (($zivotinja=$zivotinje->fetch_assoc())!=null){?>
 
 
                 <form method="post" action="zivotinja.php" class="col">
-                    <div class="card" style="background-color: rgba(42,57,89,0.87);">
+                    <div class="card" style="background-color: rgba(42,57,89,0.87); width: 35vw; margin-left: auto; margin-right: auto">
                         <div class="card-body">
                             <input type="hidden" name="id_zivotinje" value="<?=$zivotinja['id']?>" >
                             <h5 class="card-title"><?=$zivotinja['ime']?></h5>
